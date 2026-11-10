@@ -3,17 +3,13 @@
 Generates passwords that follow **Apple's strong password pattern** with **configurable length**.
 
 ### Default (classic Apple)
-```
 xxxxxx-xxxxxx-xxxxxx          ← 3 blocks = 18 characters
-```
 
 ### Custom length
-```
 --blocks 1   →  xxxxxx
 --blocks 2   →  xxxxxx-xxxxxx
 --blocks 4   →  xxxxxx-xxxxxx-xxxxxx-xxxxxx
 --blocks 10  →  60-character password
-```
 
 ---
 
@@ -28,25 +24,54 @@ xxxxxx-xxxxxx-xxxxxx          ← 3 blocks = 18 characters
 
 ---
 
+## Installation (Global Command)
+
+You can install the generator as a global `passgen` command so you can run it from anywhere in your terminal.
+
+1. Navigate into the project folder:
+   ```bash
+   cd passwd-gen
+   ```
+2. Make the install script executable:
+   ```bash
+   chmod +x install.sh
+   ```
+3. Run the installation (requires `sudo` password):
+   ```bash
+   ./install.sh
+   ```
+
+*(To uninstall later, simply run `sudo rm /usr/local/bin/passgen`.)*
+
+---
+
 ## Usage
+
+### With global command (recommended)
+
+```bash
+# Classic Apple password (18 chars)
+passgen
+
+# Shorter or longer
+passgen --blocks 1
+passgen --blocks 5
+passgen --blocks 10
+
+# Generate many
+passgen -n 100
+passgen -n 1000000 -o million.txt
+
+# Long + many
+passgen -n 50 --blocks 6 -o strong.txt
+```
+
+### Without installation (via Python)
 
 ```bash
 cd passwd-gen
-
-# Classic Apple password (18 chars)
 python3 passgen.py
-
-# Shorter or longer
-python3 passgen.py --blocks 1
 python3 passgen.py --blocks 5
-python3 passgen.py --blocks 10
-
-# Generate many
-python3 passgen.py -n 100
-python3 passgen.py -n 1000000 -o million.txt
-
-# Long + many
-python3 passgen.py -n 50 --blocks 6 -o strong.txt
 ```
 
 ### Options
